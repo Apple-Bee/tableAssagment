@@ -10,26 +10,27 @@ let companies = [
 let isTableVisible = false; // Initialize isTableVisible
 
 function generateTableHead(table, data) {
-    let thead = table.createTHead(); // Corrected function name
+    let thead = table.createTHead();
     let row = thead.insertRow();
-    for (let key of data) {
+    data.map(key => {
         let th = document.createElement("th");
         let text = document.createTextNode(key);
         th.appendChild(text);
         row.appendChild(th);
-    }
+    });
 }
 
 function generateTable(table, data) {
-    for (let element of data) {
+    data.map(element => {
         let row = table.insertRow();
-        for (let key in element) {
+        Object.values(element).map(value => {
             let cell = row.insertCell();
-            let text = document.createTextNode(element[key]);
+            let text = document.createTextNode(value);
             cell.appendChild(text);
-        }
-    }
+        });
+    });
 }
+
 
 function handleClick() {
     let table = document.querySelector("table");
